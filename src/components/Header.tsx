@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '../lib/utils';
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "../lib/utils";
+import { getCalApi } from "@calcom/embed-react";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
-    { id: 'services', label: 'SERVICES' },
-    { id: 'about-us', label: 'ABOUT US' },
-    { id: 'doctors', label: 'DOCTORS' },
-    { id: 'testimonials', label: 'TESTIMONIALS' }
+    { id: "services", label: "SERVICES" },
+    { id: "doctor", label: "DOCTOR" },
+    { id: "testimonials", label: "TESTIMONIALS" },
   ];
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "15min" });
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -21,7 +27,7 @@ const Header: React.FC = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
     setIsMenuOpen(false);
@@ -35,32 +41,32 @@ const Header: React.FC = () => {
         bounce: 0,
         duration: 0.7,
         delayChildren: 0.3,
-        staggerChildren: 0.05
-      }
+        staggerChildren: 0.05,
+      },
     },
     closed: {
       clipPath: "inset(10% 50% 90% 50%)",
       transition: {
         type: "spring",
         bounce: 0,
-        duration: 0.3
-      }
-    }
+        duration: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
     open: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
+      transition: { type: "spring", stiffness: 300, damping: 24 },
     },
-    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
       <div className="max-w-7xl mx-auto">
-        <motion.header 
+        <motion.header
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           className={cn(
@@ -70,14 +76,19 @@ const Header: React.FC = () => {
             "border border-white/20"
           )}
         >
-          <motion.div 
+          <motion.div
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              BRIGHT
-            </h1>
+            {/* <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              UNICO DENTALS
+            </h1> */}
+            <img
+              src="./logoBlack.png"
+              alt="Unico dentals logo"
+              className="h-16"
+            />
           </motion.div>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -95,10 +106,13 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <motion.button 
+            <motion.button
               className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-full"
               whileHover={{ scale: 1.05, backgroundColor: "#1D4ED8" }}
               whileTap={{ scale: 0.95 }}
+              data-cal-namespace="15min"
+              data-cal-link="unicodentals/15min"
+              data-cal-config='{"layout":"month_view"}'
             >
               Book Online
             </motion.button>
@@ -109,7 +123,11 @@ const Header: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </motion.button>
           </div>
 

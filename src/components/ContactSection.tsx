@@ -1,33 +1,33 @@
-import React from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ContactSection: React.FC = () => {
   const contactInfo = [
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      content: "+91 86539 61813",
+      link: "tel:+91 86539 61813",
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      content: "contact@bright.com",
-      link: "mailto:contact@bright.com"
+      content: "unicodentals@gmail.com",
+      link: "mailto:unicodentals@gmail.com",
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      content: "123 Dental Street, NY 10001",
-      link: "https://maps.google.com"
+      content: "Shiv Mandir, Bara Mohansingh, Siliguri",
+      link: "https://maps.app.goo.gl/A2G1Sp7BFsZSJGoH9",
     },
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Working Hours",
-      content: "Mon-Fri: 9AM-6PM",
-      link: null
-    }
+      content: "Mon-Fri: 10:30AM-8:00PM",
+      link: null,
+    },
   ];
 
   const containerVariants = {
@@ -37,19 +37,19 @@ const ContactSection: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <section className="py-16 px-4 bg-blue-50">
-      <motion.div 
+    <section className="py-16 px-4 bg-blue-50" id="contact">
+      <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
@@ -61,8 +61,8 @@ const ContactSection: React.FC = () => {
             GET IN TOUCH WITH US
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We're here to help! Reach out to us through any of the following channels
-            or visit our clinic during working hours.
+            We're here to help! Reach out to us through any of the following
+            channels or visit our clinic during working hours.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-semibold">{info.title}</h3>
                   {info.link ? (
-                    <a 
+                    <a
                       href={info.link}
                       className="text-sm text-gray-600 hover:text-blue-600"
                     >
@@ -94,11 +94,8 @@ const ContactSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <motion.div 
-            className="space-y-6"
-            variants={itemVariants}
-          >
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 items-center">
+          {/* <motion.div className="space-y-6" variants={itemVariants}>
             <h3 className="text-2xl font-bold">Send Us a Message</h3>
             <form className="space-y-4">
               <div>
@@ -130,14 +127,14 @@ const ContactSection: React.FC = () => {
                 Send Message
               </motion.button>
             </form>
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div 
+          <motion.div
             className="h-[400px] rounded-xl overflow-hidden shadow-lg"
             variants={itemVariants}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1709012345678!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.167037540137!2d88.35890677576664!3d26.707110176770414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e447bb3ed1cab5%3A0xe6a84582e2e5cad!2sUnico%20Dentals!5e0!3m2!1sen!2sin!4v1748170651910!5m2!1sen!2sin "
               width="100%"
               height="100%"
               style={{ border: 0 }}

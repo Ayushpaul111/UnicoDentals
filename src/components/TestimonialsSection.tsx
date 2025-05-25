@@ -59,28 +59,50 @@ const testimonials: TestimonialProps[] = [
 ];
 
 const TestimonialsSection: React.FC = () => {
-  const [[page, direction], setPage] = useState([0, 0]);
+  const [[currentIndex, direction], setCurrentIndex] = useState([0, 0]);
+
+  // Determine items per page based on screen size
+  const getItemsPerPage = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 768) return 1; // Mobile: 1 card
+      if (window.innerWidth < 1024) return 2; // Tablet: 2 cards
+      return 3; // Desktop: 3 cards
+    }
+    return 3; // Default to 3 for server-side rendering
+  };
+
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
+
+  // Update itemsPerPage on window resize
+  React.useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(getItemsPerPage());
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const paginate = (newDirection: number) => {
-    const newPage =
-      (page + newDirection + testimonials.length) % testimonials.length;
-    setPage([newPage, newDirection]);
+    const newIndex =
+      (currentIndex + newDirection + testimonials.length) % testimonials.length;
+    setCurrentIndex([newIndex, newDirection]);
   };
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 300 : -300,
       opacity: 0,
+      scale: 0.8,
     }),
     center: {
-      zIndex: 1,
       x: 0,
       opacity: 1,
+      scale: 1,
     },
     exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 300 : -300,
       opacity: 0,
+      scale: 0.8,
     }),
   };
 
@@ -88,6 +110,25 @@ const TestimonialsSection: React.FC = () => {
     return Array.from({ length: rating }).map((_, index) => (
       <Star key={index} className="w-4 h-4 text-yellow-400 fill-current" />
     ));
+  };
+
+  // Calculate visible testimonials
+  const visibleTestimonials = Array.from({ length: itemsPerPage }).map(
+    (_, i) => testimonials[(currentIndex + i) % testimonials.length]
+  );
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100; // Adjust if your header size is different
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -109,35 +150,31 @@ const TestimonialsSection: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium mt-8 md:mt-0"
+            onClick={() => scrollToSection("services")}
           >
             Explore all treatment
           </motion.button>
         </motion.div>
 
         <div className="relative min-h-[400px] overflow-hidden">
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={page}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              className="absolute w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {[
-                testimonials[page],
-                testimonials[(page + 1) % testimonials.length],
-                testimonials[(page + 2) % testimonials.length],
-              ].map((testimonial, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full">
+            {visibleTestimonials.map((testimonial, index) => (
+              <AnimatePresence
+                key={(currentIndex + index) % testimonials.length}
+                mode="wait"
+              >
                 <motion.div
-                  key={index}
-                  className="relative overflow-hidden rounded-3xl bg-gray-100 group"
-                  transition={{ duration: 0.2 }}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 },
+                    scale: { duration: 0.2 },
+                  }}
+                  className="relative overflow-hidden rounded-3xl bg-gray-100 group w-full"
                 >
                   <motion.img
                     src={testimonial.imageUrl}
@@ -167,9 +204,9 @@ const TestimonialsSection: React.FC = () => {
                     </p>
                   </motion.div>
                 </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              </AnimatePresence>
+            ))}
+          </div>
         </div>
 
         <motion.div
