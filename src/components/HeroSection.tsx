@@ -47,7 +47,7 @@ const HeroSection: React.FC = () => {
 
           {/* Circular Badge */}
           <motion.div
-            className="absolute w-24 h-24 sm:top-8 sm:right-8 bottom-2 right-1"
+            className="absolute w-24 h-24 sm:top-8 sm:right-8 bottom-1 left-1"
             initial={{ rotate: -180, opacity: 0 }}
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
