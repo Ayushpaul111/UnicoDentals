@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { cn } from "../lib/utils";
 import { getCalApi } from "@calcom/embed-react";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
+
+  // Transform scroll values to create smooth scaling effect
+  const headerScale = useTransform(scrollY, [0, 200], [1, 0.85]);
+  const headerPadding = useTransform(scrollY, [0, 200], [24, 16]);
+  const logoScale = useTransform(scrollY, [0, 200], [1, 0.8]);
+  const textSize = useTransform(scrollY, [0, 200], [1, 0.9]);
+
   const navItems = [
     { id: "services", label: "SERVICES" },
     { id: "doctor", label: "DOCTOR" },
     { id: "testimonials", label: "TESTIMONIALS" },
   ];
+
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({ namespace: "15min" });
@@ -69,45 +83,53 @@ const Header: React.FC = () => {
         <motion.header
           initial={{ y: -100 }}
           animate={{ y: 0 }}
+          style={{
+            scale: headerScale,
+            paddingLeft: headerPadding,
+            paddingRight: headerPadding,
+          }}
           className={cn(
-            "rounded-full px-6 py-3",
+            "rounded-full py-3",
             "flex items-center justify-between",
             "bg-white/80 backdrop-blur-md shadow-lg",
-            "border border-white/20"
+            "border border-white/20",
+            "transition-all duration-300 ease-out"
           )}
         >
           <motion.div
             className="flex items-center"
+            style={{ scale: logoScale }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {/* <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              UNICO DENTALS
-            </h1> */}
             <img
               src="./logoBlack.png"
               alt="Unico dentals logo"
-              className="h-16"
+              className="h-16 transition-all duration-300 ease-out"
             />
           </motion.div>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <motion.nav
+            className="hidden md:flex items-center space-x-8"
+            style={{ scale: textSize }}
+          >
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item.label}
               </motion.button>
             ))}
-          </nav>
+          </motion.nav>
 
           <div className="flex items-center space-x-4">
             <motion.button
-              className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-full"
+              className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-full whitespace-nowrap"
+              style={{ scale: textSize }}
               whileHover={{ scale: 1.05, backgroundColor: "#1D4ED8" }}
               whileTap={{ scale: 0.95 }}
               data-cal-namespace="15min"
@@ -120,6 +142,7 @@ const Header: React.FC = () => {
             <motion.button
               className="md:hidden text-gray-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              style={{ scale: textSize }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
