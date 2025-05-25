@@ -1,0 +1,146 @@
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '../lib/utils';
+
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navItems = [
+    { id: 'services', label: 'SERVICES' },
+    { id: 'about-us', label: 'ABOUT US' },
+    { id: 'doctors', label: 'DOCTORS' },
+    { id: 'testimonials', label: 'TESTIMONIALS' }
+  ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100; // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
+  const menuVariants = {
+    open: {
+      clipPath: "inset(0% 0% 0% 0%)",
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.7,
+        delayChildren: 0.3,
+        staggerChildren: 0.05
+      }
+    },
+    closed: {
+      clipPath: "inset(10% 50% 90% 50%)",
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 }
+    },
+    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+  };
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
+      <div className="max-w-7xl mx-auto">
+        <motion.header 
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className={cn(
+            "rounded-full px-6 py-3",
+            "flex items-center justify-between",
+            "bg-white/80 backdrop-blur-md shadow-lg",
+            "border border-white/20"
+          )}
+        >
+          <motion.div 
+            className="flex items-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              BRIGHT
+            </h1>
+          </motion.div>
+
+          <nav className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
+          </nav>
+
+          <div className="flex items-center space-x-4">
+            <motion.button 
+              className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-full"
+              whileHover={{ scale: 1.05, backgroundColor: "#1D4ED8" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book Online
+            </motion.button>
+
+            <motion.button
+              className="md:hidden text-gray-700"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </motion.button>
+          </div>
+
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={menuVariants}
+                className="absolute top-full left-4 right-4 mt-2 bg-white rounded-2xl shadow-lg md:hidden"
+              >
+                <nav className="flex flex-col p-4">
+                  {navItems.map((item) => (
+                    <motion.button
+                      key={item.id}
+                      variants={itemVariants}
+                      onClick={() => scrollToSection(item.id)}
+                      className="py-2 text-sm font-medium text-gray-700 hover:text-blue-600"
+                    >
+                      {item.label}
+                    </motion.button>
+                  ))}
+                </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.header>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
