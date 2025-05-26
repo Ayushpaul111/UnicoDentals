@@ -100,16 +100,14 @@ const ServicesSection: React.FC = () => {
       title: "Orthodontist Dental Care",
       description:
         "A dentist is a doctor trained to specialize in teeth, gums, nerves, and jaw, while orthodontists are dentists who specialize in a specific specialty within dentistry. Regular check-ups & professional cleanings to maintain healthy teeth and gums.",
-      imageUrl:
-        "https://images.pexels.com/photos/3881449/pexels-photo-3881449.jpeg",
+      imageUrl: "./rootCanal.jpg",
     },
     {
       id: 2,
       title: "Cosmetic Dental Care",
       description:
         "Cosmetic dentistry focuses on improving the appearance of your teeth, mouth, and smile. Common procedures include teeth whitening, veneers, fillings, and implants. These services help enhance your smile and boost confidence.",
-      imageUrl:
-        "https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg",
+      imageUrl: "./rootCanal.jpg",
     },
   ];
 

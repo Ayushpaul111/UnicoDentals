@@ -32,6 +32,39 @@ const Header: React.FC = () => {
     })();
   }, []);
 
+  // Close menu when clicking outside or scrolling
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      const menuButton = document.querySelector("[data-menu-button]");
+      const menuDropdown = document.querySelector("[data-menu-dropdown]");
+
+      if (
+        isMenuOpen &&
+        !menuButton?.contains(target) &&
+        !menuDropdown?.contains(target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -139,12 +172,13 @@ const Header: React.FC = () => {
               Book Online
             </motion.button>
 
+            {/* Removed the textSize transform from the menu button */}
             <motion.button
               className="md:hidden text-gray-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ scale: textSize }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              data-menu-button
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -162,6 +196,7 @@ const Header: React.FC = () => {
                 exit="closed"
                 variants={menuVariants}
                 className="absolute top-full left-4 right-4 mt-2 bg-white rounded-2xl shadow-lg md:hidden"
+                data-menu-dropdown
               >
                 <nav className="flex flex-col p-4">
                   {navItems.map((item) => (
