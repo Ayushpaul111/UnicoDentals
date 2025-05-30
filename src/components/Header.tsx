@@ -112,7 +112,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto ">
         <motion.header
           initial={{ y: -100 }}
           animate={{ y: 0 }}
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
           className={cn(
             "rounded-full py-3",
             "flex items-center justify-between",
-            "bg-white/80 backdrop-blur-md shadow-lg",
+            " bg-blue-800/70 backdrop-blur-md shadow-lg",
             "border border-white/20",
             "transition-all duration-300 ease-out"
           )}
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <img
-              src="./logoBlack.png"
+              src="./logo.png"
               alt="Unico dentals logo"
               className="h-16 transition-all duration-300 ease-out"
             />
@@ -150,7 +150,7 @@ const Header: React.FC = () => {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap"
+                className="text-sm font-medium text-white hover:text-blue-600 transition-colors whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
 
           <div className="flex items-center space-x-4">
             <motion.button
-              className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-full whitespace-nowrap"
+              className="bg-blue-900 text-white text-sm font-medium px-6 py-2 rounded-full whitespace-nowrap"
               style={{ scale: textSize }}
               whileHover={{ scale: 1.05, backgroundColor: "#1D4ED8" }}
               whileTap={{ scale: 0.95 }}
@@ -174,7 +174,7 @@ const Header: React.FC = () => {
 
             {/* Removed the textSize transform from the menu button */}
             <motion.button
-              className="md:hidden text-gray-700"
+              className="md:hidden text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

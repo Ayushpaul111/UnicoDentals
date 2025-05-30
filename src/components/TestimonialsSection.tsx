@@ -83,9 +83,9 @@ const TestimonialsSection: React.FC = () => {
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
+      x: direction > 0 ? 200 : -200,
       opacity: 0,
-      scale: 0.8,
+      scale: 0.9,
     }),
     center: {
       x: 0,
@@ -93,9 +93,9 @@ const TestimonialsSection: React.FC = () => {
       scale: 1,
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 300 : -300,
+      x: direction < 0 ? 200 : -200,
       opacity: 0,
-      scale: 0.8,
+      scale: 0.9,
     }),
   };
 
@@ -169,9 +169,9 @@ const TestimonialsSection: React.FC = () => {
                   animate="center"
                   exit="exit"
                   transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 },
-                    scale: { duration: 0.2 },
+                    x: { type: "spring", stiffness: 500, damping: 25 },
+                    opacity: { duration: 0.15 },
+                    scale: { duration: 0.15 },
                   }}
                   className="relative overflow-hidden rounded-2xl bg-white shadow-lg group w-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
                 >
@@ -181,13 +181,13 @@ const TestimonialsSection: React.FC = () => {
                     className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.2 }}
                   />
                   <motion.div
                     className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 from-10% to-transparent to-90% text-white"
-                    initial={{ y: 30, opacity: 0 }}
+                    initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.3 }}
+                    transition={{ delay: 0.1, duration: 0.2 }}
                   >
                     <div className="flex items-center gap-1.5 mb-3">
                       {renderStars(testimonial.rating)}
