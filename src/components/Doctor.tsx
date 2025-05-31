@@ -48,7 +48,7 @@ const Doctor: React.FC = () => {
 
           <div className="relative">
             <img
-              src="./IMG_5376.JPG"
+              src="./IMG_5377.JPG"
               alt="Dr. Sarah Mitchell"
               className="w-full h-auto rounded-3xl shadow-lg"
             />

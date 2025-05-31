@@ -25,7 +25,7 @@ const ContactSection: React.FC = () => {
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Working Hours",
-      content: "Mon-Fri: 10:30AM-8:00PM",
+      content: "Mon-Sat: 10:30AM-8:00PM \nSun: 10:00AM-2:00PM",
       link: null,
     },
   ];

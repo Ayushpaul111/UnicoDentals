@@ -169,11 +169,11 @@ const ServicesSection: React.FC = () => {
     },
     {
       id: 14,
-      title: "Pedodontic Treatment",
+      title: "Teeth Whitening",
       description:
-        "Specialized pediatric dental care for children from infancy through adolescence. Child-friendly environment with gentle techniques for cleanings, fillings, fluoride treatments, and preventive care.",
+        "Professional teeth whitening solutions for children and adults. Whitening removes surface stains and discoloration, promoting a brighter smile and healthier teeth.",
       imageUrl:
-        "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1581833971351-2c8b550f87b3?w=500&h=300&fit=crop",
     },
   ];
 
