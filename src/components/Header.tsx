@@ -13,11 +13,21 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // Transform scroll values to create smooth scaling effect
+  // Transform scroll values for scaling effects
   const headerScale = useTransform(scrollY, [0, 200], [1, 0.85]);
   const headerPadding = useTransform(scrollY, [0, 200], [24, 16]);
   const logoScale = useTransform(scrollY, [0, 200], [1, 0.8]);
   const textSize = useTransform(scrollY, [0, 200], [1, 0.9]);
+
+  // Determine background class based on scroll position
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = scrollY.onChange((y) => {
+      setIsScrolled(y > 10); // Trigger background change after scrolling 10px
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   const navItems = [
     { id: "services", label: "SERVICES" },
@@ -68,7 +78,7 @@ const Header: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Account for fixed header
+      const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -112,7 +122,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto">
         <motion.header
           initial={{ y: -100 }}
           animate={{ y: 0 }}
@@ -124,8 +134,11 @@ const Header: React.FC = () => {
           className={cn(
             "rounded-full py-3",
             "flex items-center justify-between",
-            " bg-blue-800/70 backdrop-blur-md shadow-lg",
-            "border border-white/20",
+            isScrolled
+              ? "bg-blue-800/70 backdrop-blur-md border-white/20"
+              : "bg-blue-900",
+            "shadow-lg",
+            "border",
             "transition-all duration-300 ease-out"
           )}
         >
@@ -150,7 +163,7 @@ const Header: React.FC = () => {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-white hover:text-blue-600 transition-colors whitespace-nowrap"
+                className="text-sm font-medium text-white hover:font-bold transition-colors whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -161,7 +174,10 @@ const Header: React.FC = () => {
 
           <div className="flex items-center space-x-4">
             <motion.button
-              className="bg-blue-900 text-white text-sm font-medium px-6 py-2 rounded-full whitespace-nowrap"
+              className={cn(
+                "text-sm font-medium px-6 py-2 rounded-full whitespace-nowrap transition-all duration-300 ease-out",
+                isScrolled ? "bg-blue-900 text-white" : "bg-blue-200 text-black"
+              )}
               style={{ scale: textSize }}
               whileHover={{ scale: 1.05, backgroundColor: "#1D4ED8" }}
               whileTap={{ scale: 0.95 }}
@@ -172,7 +188,6 @@ const Header: React.FC = () => {
               Book Online
             </motion.button>
 
-            {/* Removed the textSize transform from the menu button */}
             <motion.button
               className="md:hidden text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -39,7 +39,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <img
-              src="./hero.jpg"
+              src="./IMG_5374.JPG"
               alt="Dental care"
               className="w-full h-[500px] object-cover"
             />

@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
 
 interface ServiceProps {
   title: string;
   description: string;
   imageUrl: string;
-  isOpen?: boolean;
-  toggleOpen?: () => void;
 }
 
 const ServiceCard: React.FC<ServiceProps> = ({
   title,
   description,
   imageUrl,
-  isOpen,
-  toggleOpen,
 }) => {
   return (
     <div
-      className={`rounded-3xl overflow-hidden transition-all duration-300 ease-in-out shadow-sm border-2 ${
-        isOpen ? "bg-white border-gray-300" : "bg-gray-100 border-gray-200"
-      }`}
+      className="rounded-3xl overflow-hidden transition-all duration-300 ease-in-out shadow-sm border-2 bg-white border-gray-300"
       style={{
-        transform: isOpen ? "scale(1.01)" : "scale(1)",
+        transform: "scale(1.01)",
         transition: "all 0.3s ease-in-out",
         display: "block",
       }}
@@ -38,24 +31,15 @@ const ServiceCard: React.FC<ServiceProps> = ({
 
       {/* Title and description section */}
       <div className="p-4">
-        <div
-          className="flex justify-between items-center cursor-pointer transition-colors duration-200"
-          onClick={toggleOpen}
-        >
+        <div className="flex justify-between items-center cursor-pointer transition-colors duration-200">
           <h3 className="font-semibold text-xl text-gray-800">{title}</h3>
-          <div
-            className="transition-transform duration-300 ease-in-out"
-            style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
-          >
-            <ChevronDown className="h-5 w-5 text-gray-600" />
-          </div>
         </div>
 
         <div
           className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{
-            maxHeight: isOpen ? "400px" : "0px",
-            opacity: isOpen ? 1 : 0,
+            maxHeight: "400px",
+            opacity: 1,
           }}
         >
           <p className="text-gray-600 text-sm mt-2 leading-relaxed">
@@ -68,7 +52,6 @@ const ServiceCard: React.FC<ServiceProps> = ({
 };
 
 const ServicesSection: React.FC = () => {
-  const [openService, setOpenService] = useState<number>(1);
   const [showAll, setShowAll] = useState<boolean>(false);
 
   const services = [
@@ -185,7 +168,7 @@ const ServicesSection: React.FC = () => {
         "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=300&fit=crop",
     },
     {
-      id: 13,
+      id: 14,
       title: "Pedodontic Treatment",
       description:
         "Specialized pediatric dental care for children from infancy through adolescence. Child-friendly environment with gentle techniques for cleanings, fillings, fluoride treatments, and preventive care.",
@@ -227,10 +210,7 @@ const ServicesSection: React.FC = () => {
                   title={service.title}
                   description={service.description}
                   imageUrl={service.imageUrl}
-                  isOpen={openService === service.id}
-                  toggleOpen={() =>
-                    setOpenService(openService === service.id ? -1 : service.id)
-                  }
+                  key={service.id}
                 />
               </div>
             );
