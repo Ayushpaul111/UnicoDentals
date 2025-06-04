@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
             >
               NEW LIFE
               <br />
-              BEGIN WITH SMILE
+              BEGINS WITH A SMILE
             </motion.h1>
 
             <motion.p
@@ -25,9 +25,9 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Bright goal is to give you as well as your family from the highest
-              quality dental care via our highly most well trained dental
-              professionals solution.
+              Our goal is to give you as well as your family the highest quality
+              dental care by our highly qualified and skilled dental
+              professionals.
             </motion.p>
           </div>
 

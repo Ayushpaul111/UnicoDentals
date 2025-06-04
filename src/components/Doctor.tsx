@@ -57,7 +57,7 @@ const Doctor: React.FC = () => {
                 She is our
               </h4>
               <p className="text-xs text-gray-600">
-                Senior Dental surgeon and implantologist
+                Senior Dental Surgeon and Implantologist
               </p>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 export const SocialMediaButtons = () => {
   const [isVisible, setIsVisible] = React.useState(true);
   const phoneNumber = "+918653961813"; // Replace with your actual WhatsApp number (with country code, no + or spaces)
+  const callPhoneNumber = "+918653961813"; // Phone number for calls (with country code)
   const message = "Hey, I am interested to make a booking!";
   const instagramUsername = "unico_dentals"; // Replace with your Instagram username
 
@@ -41,6 +42,10 @@ export const SocialMediaButtons = () => {
     window.open(instagramUrl, "_blank");
   };
 
+  const handleCallClick = () => {
+    window.location.href = `tel:${callPhoneNumber}`;
+  };
+
   return (
     <motion.div
       className="fixed bottom-6 right-6 z-50 flex flex-col gap-3"
@@ -52,6 +57,27 @@ export const SocialMediaButtons = () => {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       style={{ pointerEvents: isVisible ? "auto" : "none" }}
     >
+      {/* Call Button */}
+      <motion.button
+        onClick={handleCallClick}
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-all duration-300"
+        initial={{ scale: 0, x: 100 }}
+        animate={{ scale: 1, x: 0 }}
+        transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 20 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+        </svg>
+      </motion.button>
+
       {/* WhatsApp Button */}
       <motion.button
         onClick={handleWhatsAppClick}

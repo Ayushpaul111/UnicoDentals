@@ -507,7 +507,7 @@ const TestimonialsSection: React.FC = memo(() => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              HAPPY CLIENTS'
+              HAPPY CLIENTS
             </motion.span>
             <br />
             <motion.span
@@ -517,7 +517,7 @@ const TestimonialsSection: React.FC = memo(() => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             >
-              UNICO TREATMENT
+              OF UNICO TREATMENT
             </motion.span>
           </motion.h2>
           <motion.button
