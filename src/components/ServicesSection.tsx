@@ -57,126 +57,68 @@ const ServicesSection: React.FC = () => {
   const services = [
     {
       id: 0,
-      title: "Dental Implants",
+      title: "Teeth Scaling",
       description:
-        "Permanent tooth replacement solution using titanium posts surgically placed into the jawbone. Implants provide a stable foundation for crowns, bridges, or dentures, restoring both function and appearance.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=500&h=300&fit=crop",
+        "Professional deep cleaning procedure to remove plaque, tartar, and bacterial deposits from above and below the gum line. Scaling helps prevent gum disease, reduces inflammation, and maintains optimal oral health.",
+      imageUrl: "./services/teeth-scaling-vs-cleaning.webp",
     },
     {
       id: 1,
-      title: "Dentures & Bridges",
+      title: "Extraction",
       description:
-        "Custom-fitted removable or fixed prosthetic devices to replace missing teeth. Bridges connect to existing teeth while dentures can replace partial or complete sets of teeth, restoring your smile and chewing ability.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop",
+        "Safe and comfortable tooth removal procedures for damaged, decayed, or impacted teeth. Includes wisdom tooth extractions and surgical extractions with proper pain management and aftercare guidance.",
+      imageUrl: "./services/Extraction.jpg",
     },
     {
       id: 2,
-      title: "Extractions",
-      description:
-        "Safe and comfortable tooth removal procedures for damaged, decayed, or impacted teeth. Includes wisdom tooth extractions and surgical extractions with proper pain management and aftercare guidance.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&h=300&fit=crop",
-    },
-    {
-      id: 3,
       title: "Fillings and Sealants",
       description:
         "Tooth-colored composite fillings to repair cavities and restore tooth structure. Preventive sealants protect molars from decay by covering deep grooves where bacteria commonly accumulate.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=500&h=300&fit=crop",
+      imageUrl: "./services/Fillings_and_Sealants.webp",
+    },
+    {
+      id: 3,
+      title: "Removable Partial Dentures",
+      description:
+        "Custom-fitted removable prosthetic devices designed to replace several missing teeth while preserving remaining natural teeth. Provides comfortable chewing function and natural appearance with easy maintenance.",
+      imageUrl: "./services/Removable_Partial_Dentures.webp",
     },
     {
       id: 4,
-      title: "Mouth Guards",
+      title: "Complete Partial Dentures",
       description:
-        "Custom-fitted protective appliances for sports activities and nighttime teeth grinding. Guards prevent dental injuries, reduce jaw tension, and protect against tooth wear from bruxism.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=300&fit=crop",
+        "Comprehensive partial denture solutions for patients missing multiple teeth in different areas of the mouth. Custom-designed for optimal fit, function, and aesthetics while maintaining oral health.",
+      imageUrl: "./services/Complete_Partial_Dentures.jpeg",
     },
     {
       id: 5,
-      title: "Online Dentist Booking",
+      title: "Tooth Crown",
       description:
-        "Convenient 24/7 online appointment scheduling system. Book consultations, routine cleanings, and emergency visits with real-time availability and automated reminders for your dental care needs.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop",
+        "Durable ceramic or porcelain crowns that completely cover damaged or weakened teeth. Crowns restore tooth strength, function, and appearance while providing long-lasting protection against further damage.",
+      imageUrl: "./services/Crown.jpeg",
     },
     {
       id: 6,
-      title: "Root Canals",
+      title: "Root Canal Treatment",
       description:
         "Advanced endodontic treatment to save severely infected or damaged teeth. The procedure removes infected pulp, cleans the root canals, and seals the tooth to prevent further infection while preserving the natural tooth.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&h=300&fit=crop",
+      imageUrl: "./services/Root_Canal_Treatment.jpg",
     },
     {
       id: 7,
-      title: "Teeth Cleaning",
+      title: "Periodontal Treatments",
       description:
-        "Professional dental hygiene services including scaling, polishing, and plaque removal. Regular cleanings prevent gum disease, maintain oral health, and keep your smile bright and healthy.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&h=300&fit=crop",
+        "Comprehensive gum disease treatment including deep cleaning, scaling, root planing, and maintenance therapy. Specialized care to restore gum health and prevent tooth loss from advanced periodontitis.",
+      imageUrl: "./services/Periodontal_Treatments.jpeg",
     },
     {
       id: 8,
-      title: "Teeth Reshaping",
-      description:
-        "Cosmetic contouring to improve tooth shape, length, and surface irregularities. Minor adjustments can dramatically enhance your smile's appearance by creating better proportion and symmetry.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=500&h=300&fit=crop",
-    },
-    {
-      id: 9,
-      title: "Veneers & Crowns",
-      description:
-        "Premium cosmetic restorations using porcelain veneers for front teeth and crowns for damaged teeth. These solutions provide natural-looking results that enhance both appearance and function.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=500&h=300&fit=crop",
-    },
-    {
-      id: 10,
-      title: "X-ray",
-      description:
-        "Digital dental radiography for accurate diagnosis and treatment planning. Advanced imaging technology provides detailed views of teeth, roots, and jaw structure with minimal radiation exposure.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=500&h=300&fit=crop",
-    },
-    {
-      id: 11,
-      title: "Periodontal Treatment",
-      description:
-        "Comprehensive gum disease treatment including deep cleaning, scaling, root planing, and maintenance therapy. Specialized care to restore gum health and prevent tooth loss from advanced periodontitis.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1606811832074-7d8db6395212?w=500&h=300&fit=crop",
-    },
-    {
-      id: 12,
       title: "Orthodontic Treatment",
       description:
         "Teeth straightening solutions including traditional braces, clear aligners, and retainers. Corrects bite issues, spacing problems, and alignment concerns for improved oral health and aesthetics.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=500&h=300&fit=crop",
-    },
-    {
-      id: 13,
-      title: "Pedodontic Treatment",
-      description:
-        "Specialized pediatric dental care for children from infancy through adolescence. Child-friendly environment with gentle techniques for cleanings, fillings, fluoride treatments, and preventive care.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=300&fit=crop",
-    },
-    {
-      id: 14,
-      title: "Teeth Whitening",
-      description:
-        "Professional teeth whitening solutions for children and adults. Whitening removes surface stains and discoloration, promoting a brighter smile and healthier teeth.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1581833971351-2c8b550f87b3?w=500&h=300&fit=crop",
+      imageUrl: "./services/Orthodontic_Treatment.jpg",
     },
   ];
-
   return (
     <section id="services" className="py-16 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">

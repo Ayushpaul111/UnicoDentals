@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
             <img
               src="./IMG_5374.JPG"
               alt="Dental care"
-              className="w-full h-[500px] object-cover"
+              className="w-full h-[500px] object-cover  object-[73%]"
             />
           </motion.div>
 

@@ -6,6 +6,7 @@ import Doctor from "./components/Doctor";
 import TestimonialsSection from "./components/TestimonialsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import { SocialMediaButtons } from "./components/Whatsapp";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <ContactSection />
       </main>
       <Footer />
+      <SocialMediaButtons />
     </motion.div>
   );
 }
