@@ -36,8 +36,9 @@ const Footer: React.FC = () => {
                 />
               </motion.h3>
               <p className="text-white max-w-xs">
-                Bright goal is to give you as well as your family the highest
-                quality dental care our highly most.
+                Our goal is to give you as well as your family the highest
+                quality dental care by our highly qualified and skilled dental
+                professionals.
               </p>
             </div>
 
