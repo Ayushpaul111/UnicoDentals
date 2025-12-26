@@ -186,13 +186,13 @@ const Footer: React.FC = () => {
           {/* Created by Ehike */}
           <div className="mt-4 text-center">
             <p className="text-white/80 text-sm">
-              Created by{" "}
+              Developed by{" "}
               <a
-                href="https://ehike.in"
+                href="https://ayushpaul.dev"
                 target="_blank"
                 className="bg-clip-text text-transparent bg-gradient-to-br from-[#723FCD] to-[#DB9FF5] font-bold italic min-w-fit"
               >
-                Ehike
+                Ayush
               </a>
             </p>
           </div>
